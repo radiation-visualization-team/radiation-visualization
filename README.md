@@ -1,2 +1,6 @@
 # radiation-visualization
- an outsourcing project
+
+这是一个赚钱的外包项目，主要是做一个软件带有客户端和模块化天线的各项指标可视化功能
+
+## 项目文件结构
+
