@@ -10,7 +10,7 @@ from draw.darw_image2 import *
 from draw.darw_image3 import *
 from draw.darw_image4 import *
 from draw.darw_image5 import *
-from utils.messabe_box import *
+from utils.message_box import *
 
 
 def draw_figure1(label, init):

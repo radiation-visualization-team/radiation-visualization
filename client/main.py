@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from client.setting import Setting_Form
 from client.file import File_Form
 from client.images import *
-from utils.messabe_box import *
+from utils.message_box import *
 
 
 class Init():

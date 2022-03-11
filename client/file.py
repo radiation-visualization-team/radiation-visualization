@@ -10,7 +10,7 @@ import shutil
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from client.images import draw_all
-from utils.messabe_box import *
+from utils.message_box import *
 
 
 class File_Form(object):
