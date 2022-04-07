@@ -1,17 +1,14 @@
-import os
-import numpy as np
-import matplotlib.pyplot as plt
 
+def array_diagram(x, y):
+    _size = [('8', '8'), ('8', '16'), ('8', '32'), ('16', '16'), ('16', '32'), ('16', '64'), ('32', '32'), ('32', '64'),
+             ('64', '64')]
+    if (x, y) not in _size:
+        return
 
-def draw1():
-    a = np.array([0, 1, 2, 3])
-    b = np.array([0, 1, 2, 3])
-    plt.plot(a, b)
-    figure_save_dir = "buffer"
-    if not os.path.exists(figure_save_dir):
-        os.makedirs(figure_save_dir)  # 如果不存在目录figure_save_path，则创建
-    plt.savefig(os.path.join(figure_save_dir , 'draw1.png'))
+    figure_save_dir = "client\\resource\\{}x{}.png".format(x, y)
+    # 画出
+    return figure_save_dir
 
 
 if __name__ == '__main__':
-    draw1()
+    array_diagram()

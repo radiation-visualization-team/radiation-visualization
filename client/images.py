@@ -2,9 +2,9 @@
 这个模块用于为main.py准备5个可以放在MainWindow上的canvas，为此需要从draw模块拿到运算结果，给每一张图写一个用于画图的槽函数
 https://blog.csdn.net/u013523007/article/details/89341724
 '''
-import os
 
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
 from draw.darw_image1 import *
 from draw.darw_image2 import *
 from draw.darw_image3 import *
@@ -13,15 +13,16 @@ from draw.darw_image5 import *
 from utils.message_box import *
 
 
-def draw_figure1(label, init):
+# 画出阵列形状图
+def ArrayDiagram(label, init, setWin):
     if check_init(init.stat): return
-    figure_save_img = "buffer\\draw1.png"
+    figure_save_img = array_diagram(setWin.text1, setWin.text2)
+    if figure_save_img is None:
+        return
     show_img = QPixmap(figure_save_img)
-    if os.path.exists(figure_save_img):
-        label.setPixmap(show_img)
-    else:
-        draw1()
-        label.setPixmap(show_img)
+    label.setPixmap(show_img)
+    label.setAlignment(Qt.AlignCenter)
+    label.antennas = setWin.antennas
 
 
 def draw_figure2(label, init):
@@ -69,7 +70,6 @@ def draw_figure5(label, init):
 
 
 def draw_all():
-    draw1()
     draw2()
     draw3()
     draw4()
