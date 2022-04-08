@@ -56,7 +56,7 @@ class Graph:
 
     def addEdge(self, n, to_n=None, w=0):  # 为一个节点到另外一个节点添加一个权重（输入id）
         if n not in self.nodeDic:
-            self.addNode(n, 0)
+            self.addNode(n, w)
         nv = self.nodeDic[n]
         if to_n not in self.nodeDic:
             self.addNode(to_n, w + nv.total_weight)
