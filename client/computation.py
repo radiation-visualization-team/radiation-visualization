@@ -56,7 +56,7 @@ class Graph:
 
     def addEdge(self, n, to_n=None, w=0):  # 为一个节点到另外一个节点添加一个权重（输入id）
         if n not in self.nodeDic:
-            self.addNode(n, 0)
+            self.addNode(n, w)
         nv = self.nodeDic[n]
         if to_n not in self.nodeDic:
             self.addNode(to_n, w + nv.total_weight)
@@ -104,7 +104,7 @@ class Graph_128:
 
 if __name__ == "__main__":
     g = Graph()
-    graphList = np.ones(127) # 输入权重list
+    graphList = np.ones(127)  # 输入权重list
     graphList = list(graphList)
     g_128 = Graph_128(g, graphList)
     g_create_128 = g_128.createGraph()
