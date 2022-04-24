@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtWidgets
 from client.images import draw_all
 from client.array import Array_Form
+from client.sub_array import SubArray_Form
 from utils.message_box import *
 
 
@@ -22,7 +23,17 @@ class Antenna():
         self.arrayWin.retranslateUi(Form=self.arrayExc)
 
         self.arrayWin.pushButton1.clicked.connect(self.arrayWin.confirm_input)
-        self.arrayWin.pushButton2.clicked.connect(self.arrayExc.close)
+
+    def show(self):
+        self.arrayExc.show()
+
+
+class SubAntenna():
+    def __init__(self, xy):
+        self.arrayWin = SubArray_Form(xy=xy)
+        self.arrayExc = QtWidgets.QWidget()
+        self.arrayWin.setupUi(Form=self.arrayExc)
+        self.arrayWin.retranslateUi(Form=self.arrayExc)
 
     def show(self):
         self.arrayExc.show()
@@ -150,7 +161,8 @@ class Setting_Form(object):
         QtCore.QMetaObject.connectSlotsByName(Form)
 
         # 保存阵列
-        self.antennas = 0
+        self.antennas = None
+        self.sub_antenna = None
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -223,27 +235,32 @@ class Setting_Form(object):
             areas = [(534, 651, 260, 376)]
             antennas = [Antenna() for _ in range(len(areas))]
             self.antennas = (areas, antennas)
+            self.sub_antenna = SubAntenna(size)
 
         if size == ('8', '16'):
             areas = [(384, 500, 327, 444), (684, 802, 327, 444)]
             antennas = [Antenna() for _ in range(len(areas))]
             self.antennas = (areas, antennas)
+            self.sub_antenna = SubAntenna(size)
 
         if size == ('8', '32'):
             areas = [(79, 199, 341, 459), (381, 500, 341, 459), (683, 800, 341, 459), (985, 1100, 341, 459)]
             antennas = [Antenna() for _ in range(len(areas))]
             self.antennas = (areas, antennas)
+            self.sub_antenna = SubAntenna(size)
 
         if size == ('16', '16'):
             areas = [(381, 500, 165, 279), (682, 801, 165, 279), (381, 500, 415, 531), (381, 500, 415, 531)]
             antennas = [Antenna() for _ in range(len(areas))]
             self.antennas = (areas, antennas)
+            self.sub_antenna = SubAntenna(size)
 
         if size == ('16', '32'):
             areas = [(80, 199, 200, 317), (384, 501, 200, 317), (684, 803, 200, 317), (987, 1103, 200, 317)
                 , (80, 199, 449, 566), (384, 501, 449, 566), (684, 803, 449, 566), (987, 1103, 449, 566)]
             antennas = [Antenna() for _ in range(len(areas))]
             self.antennas = (areas, antennas)
+            self.sub_antenna = SubAntenna(size)
 
         if size == ('16', '64'):
             areas = [(37, 96, 281, 341), (186, 246, 281, 341), (337, 395, 281, 341), (487, 546, 281, 341),
@@ -252,6 +269,7 @@ class Setting_Form(object):
                      (636, 694, 405, 464), (786, 844, 405, 464), (935, 994, 405, 464), (1086, 1143, 405, 464)]
             antennas = [Antenna() for _ in range(len(areas))]
             self.antennas = (areas, antennas)
+            self.sub_antenna = SubAntenna(size)
 
         if size == ('32', '32'):
             areas = [(264, 340, 59, 133), (458, 533, 59, 133), (650, 726, 59, 133), (843, 919, 59, 133)
@@ -260,6 +278,7 @@ class Setting_Form(object):
                 , (264, 340, 537, 610), (458, 533, 537, 610), (650, 726, 537, 610), (843, 919, 537, 610)]
             antennas = [Antenna() for _ in range(len(areas))]
             self.antennas = (areas, antennas)
+            self.sub_antenna = SubAntenna(size)
 
         if size == ('32', '64'):
             areas = [(77, 131, 153, 209), (217, 271, 153, 209), (357, 410, 153, 209), (494, 549, 153, 209),
@@ -272,6 +291,7 @@ class Setting_Form(object):
                      (634, 689, 487, 551), (772, 826, 487, 551), (912, 966, 487, 551), (1051, 1105, 487, 551)]
             antennas = [Antenna() for _ in range(len(areas))]
             self.antennas = (areas, antennas)
+            self.sub_antenna = SubAntenna(size)
 
         if size == ('64', '64'):
             areas = [(249, 285, 38, 74), (341, 378, 38, 74), (433, 470, 38, 74), (527, 564, 38, 74), (620, 655, 38, 74),
@@ -292,3 +312,4 @@ class Setting_Form(object):
                      (620, 655, 574, 610), (713, 748, 574, 610), (806, 841, 574, 610), (898, 934, 574, 610)]
             antennas = [Antenna() for _ in range(len(areas))]
             self.antennas = (areas, antennas)
+            self.sub_antenna = SubAntenna(size)

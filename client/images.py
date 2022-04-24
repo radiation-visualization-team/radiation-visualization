@@ -23,6 +23,7 @@ def ArrayDiagram(label, init, setWin):
     label.setPixmap(show_img)
     label.setAlignment(Qt.AlignCenter)
     label.antennas = setWin.antennas
+    label.sub_antenna = setWin.sub_antenna
 
 
 def draw_figure2(label, init):

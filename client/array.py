@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
-from client.computation import Graph, Graph_128
+from utils.computation import Graph, Graph_128
 
 
 # 调试坐标临时用的label
@@ -29,11 +29,8 @@ class Array_Form(object):
         self.label.setObjectName("label")
         QtCore.QMetaObject.connectSlotsByName(Form)
         self.pushButton1 = QtWidgets.QPushButton(Form)
-        self.pushButton1.setGeometry(QtCore.QRect(280, 800, 50, 30))
+        self.pushButton1.setGeometry(QtCore.QRect(325, 800, 100, 30))
         self.pushButton1.setObjectName("pushButton1")
-        self.pushButton2 = QtWidgets.QPushButton(Form)
-        self.pushButton2.setGeometry(QtCore.QRect(415, 800, 50, 30))
-        self.pushButton2.setObjectName("pushButton2")
 
         # 固定将天线阵列图居中放置
         self.label.setPixmap(QtGui.QPixmap("client\\resource\\aerial.jpg"))
@@ -568,8 +565,7 @@ class Array_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.pushButton1.setText(_translate("Form", "确认"))
-        self.pushButton2.setText(_translate("Form", "取消"))
+        self.pushButton1.setText(_translate("Form", "查看生成矩阵"))
 
     def confirm_input(self):
         self.text1 = self.l_1_1.text()
@@ -971,9 +967,8 @@ class Array_Form(object):
         for v in _:
             print(v, v.total_weight)
 
-        for i in matrix_a:
-            print(i)
-
+        for _, i in enumerate(matrix_a):
+            print("{}: {}".format(_, i))
 
 
 

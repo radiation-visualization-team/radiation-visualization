@@ -28,28 +28,29 @@ class Mylabel(QtWidgets.QLabel):
         super(Mylabel, self).__init__()
         self.click_x = 0
         self.click_y = 0
-        self.antennas = 0
+        self.antennas = (0, 0)
+        self.sub_antenna = None
 
     def mousePressEvent(self, event: QtGui.QMouseEvent):
         s = event.pos()
         self.setMouseTracking(True)
         self.click_x = s.x()
         self.click_y = s.y()
+        print(f"x:{self.click_x} y:{self.click_y}")
         self.draw_antenna(self.click_x, self.click_y, self.antennas)
 
     def draw_antenna(self, x, y, all_antennas):
         areas, antennas = all_antennas[0], all_antennas[1]
+        if areas == 0:
+            return 0
         for index, area in enumerate(areas):
             if area[0] < x < area[1] and area[2] < y < area[3]:
                 antennas[index].show()
+            # if 0 < x < 30 and 0 < y < 30:
+            #     self.sub_antenna.show()
 
-    # 调试用
-    # def mouseMoveEvent(self, event: QtGui.QMouseEvent):
-    #     s = event.pos()
-    #     self.setMouseTracking(True)
-    #     self.click_x = s.x()
-    #     self.click_y = s.y()
-    #     print(f"x:{self.click_x} y:{self.click_y}")
+    def show_sub_antenna(self):
+        self.sub_antenna.show()
 
 
 class Ui_MainWindow(object):
@@ -162,7 +163,7 @@ class Ui_MainWindow(object):
                                  "border-style:solid;\n"
                                  "border-width:1;\n"
                                  "border-color:rgba(0, 0, 0, 180);\n"
-                                 "")
+                                 )
         self.label.setText("")
         self.label.setObjectName("label")
         self.verticalLayout_3.addWidget(self.label)
@@ -176,9 +177,28 @@ class Ui_MainWindow(object):
         self.statusbar.setStatusTip("")
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        # 初始化展示上层阵列图按钮
+        self.pushButton_9 = QtWidgets.QPushButton(MainWindow)
+        self.pushButton_9.setGeometry(QtCore.QRect(60, 660, 110, 45))
+        self.pushButton_9.setText("生成矩阵")
+        self.pushButton_9.setObjectName("subarray")
+        self.pushButton_9.clicked.connect(self.label.show_sub_antenna)
+        self.pushButton_9.setStyleSheet(
+            '\n            QPushButton#subarray{\n                width: 20px;\n                height: 40px;\n '
+            '           background-color: gray;\n                border: 3px solid gray;\n                '
+            'border-radius: 5px;\n                color: white;\n                font-family: Microsoft YaHei UI;\n   '
+            '             font-size: 25px;\n            }\n            QPushButton#subarray:hover{\n             '
+            '   width: 20px;\n                height: 40px;\n                background-color: rgb(65,65,65);\n       '
+            '         border: 3px solid gray;\n                border-radius: 5px;\n                border-color: '
+            'rgb(65,65,65);\n                color: white;\n                font-family: Microsoft YaHei UI;\n        '
+            '    }\n            QPushButton#subarray:pressed{\n                width: 20px;\n                '
+            'height: 40px;\n                background-color: rgb(1,1,1);\n                border: 3px solid gray;\n  '
+            '              border-radius: 5px;\n                border-color: rgb(1,1,1);\n                color: '
+            'white;\n                font-family: Microsoft YaHei UI;\n            }\n        ')
+        self.pushButton_9.hide()
 
         # 查看是否已经设置过参数
         self.init_set = Init()
@@ -260,7 +280,7 @@ class Ui_MainWindow(object):
         self.pushButton_8.setToolTip(_translate("MainWindow", "进行标准检验"))
         self.pushButton_8.setStatusTip(_translate("MainWindow", "进行标准检验"))
         self.pushButton_8.setText(_translate("MainWindow", "标准检验"))
-        # self.label.setStatusTip(_translate("MainWindow", "展示栏"))
+        self.label.setStatusTip(_translate("MainWindow", "展示栏"))
 
     # 打开文件子窗口
     def show_file(self):
@@ -273,3 +293,8 @@ class Ui_MainWindow(object):
     # 设置check为当前显示的图片
     def choose_num(self, num):
         self.check = num
+
+        if num == 1:
+            self.pushButton_9.show()
+        else:
+            self.pushButton_9.hide()
