@@ -104,7 +104,7 @@ class Graph_128:
 
 if __name__ == "__main__":
     g = Graph()
-    graphList = np.ones(127) # 输入权重list
+    graphList = np.ones(127)  # 输入权重list
     graphList = list(graphList)
     g_128 = Graph_128(g, graphList)
     g_create_128 = g_128.createGraph()
