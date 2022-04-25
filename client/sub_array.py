@@ -641,6 +641,9 @@ class SubArray_Form(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.pushButton1.setText(_translate("Form", "生成全部矩阵"))
 
+    def confirm_input(self):
+        pass
+
 
 
 

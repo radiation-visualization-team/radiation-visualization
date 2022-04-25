@@ -46,8 +46,6 @@ class Mylabel(QtWidgets.QLabel):
         for index, area in enumerate(areas):
             if area[0] < x < area[1] and area[2] < y < area[3]:
                 antennas[index].show()
-            # if 0 < x < 30 and 0 < y < 30:
-            #     self.sub_antenna.show()
 
     def show_sub_antenna(self):
         self.sub_antenna.show()
@@ -207,7 +205,6 @@ class Ui_MainWindow(object):
         self.fileWin = File_Form()
         self.fileExc = QtWidgets.QWidget()
         self.fileWin.setupUi(Form=self.fileExc)
-        self.fileWin.retranslateUi(Form=self.fileExc)
         self.fileWin.retranslateUi(Form=self.fileExc)
         self.pushButton.clicked.connect(self.show_file)
 

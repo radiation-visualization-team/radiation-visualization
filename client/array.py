@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
 from utils.computation import Graph, Graph_128
+from client.matrix import Matrix_Form
 
 
 # 调试坐标临时用的label
@@ -824,8 +825,6 @@ class Array_Form(object):
         self.l_7_63.setText(self.text126)
         self.l_7_64.setText(self.text127)
 
-        QtWidgets.QMessageBox.information(None, "设置参数", "参数设置成功")
-
         self.mapping()
 
     def mapping(self):
@@ -962,34 +961,13 @@ class Array_Form(object):
         g = Graph()
         graph_c = Graph_128(g, attributes)
         _ = graph_c.createGraph()
-        matrix_a = graph_c.createMatrix()
+        matrix = graph_c.createMatrix()
 
-        for v in _:
-            print(v, v.total_weight)
-
-        for _, i in enumerate(matrix_a):
-            print("{}: {}".format(_, i))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        self.matWin = Matrix_Form()
+        self.matExc = QtWidgets.QWidget()
+        self.matWin.setupUi(Form=self.matExc)
+        self.matWin.retranslateUi(Form=self.matExc)
+        self.matWin.matrix_process(matrix)
+        self.matExc.show()
 
 
