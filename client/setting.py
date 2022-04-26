@@ -35,6 +35,8 @@ class SubAntenna():
         self.arrayWin.setupUi(Form=self.arrayExc)
         self.arrayWin.retranslateUi(Form=self.arrayExc)
 
+        self.arrayWin.pushButton1.clicked.connect(self.arrayWin.confirm_input)
+
     def show(self):
         self.arrayExc.show()
 

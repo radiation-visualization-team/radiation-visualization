@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
-from utils.computation import Graph, Graph_128
 from client.array import Templabel
+from client.matrix import Sub_MatrixForm
 
 
 class SubArray_Form(object):
@@ -642,7 +642,11 @@ class SubArray_Form(object):
         self.pushButton1.setText(_translate("Form", "生成全部矩阵"))
 
     def confirm_input(self):
-        pass
+        self.subWin = Sub_MatrixForm()
+        self.subExc = QtWidgets.QWidget()
+        self.subWin.setupUi(self.subExc, (self.size_x, self.size_y))
+        self.subWin.retranslateUi(self.subExc)
+        self.subExc.show()
 
 
 
