@@ -103,13 +103,13 @@ class Graph_128:
 
 
 if __name__ == "__main__":
-    g = Graph()
-    graphList = np.ones(127) # 输入权重list
-    graphList = list(graphList)
-    g_128 = Graph_128(g, graphList)
-    g_create_128 = g_128.createGraph()
-    matrix_128 = g_128.createMatrix()
+    g = Graph() # 创建图实例
+    graphList = np.ones(127)  # 输入权重list(测试数据)
+    graphList = list(graphList)  # 将测试数据转为list
+    g_128 = Graph_128(g, graphList) # 调用创建好的图，并将权重导入生成128子图实例
+    g_create_128 = g_128.createGraph() # 构建128子图
+    matrix_128 = g_128.createMatrix()  # 生成128子图的顶点矩阵
     print(matrix_128)
 
-    for v in g_create_128:
+    for v in g_create_128: # 调用g_128中的__iter__输出所有节点__str__
         print(v)
