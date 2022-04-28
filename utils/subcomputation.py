@@ -233,12 +233,18 @@ class MatrixPlus:
         self.addweight_matrix(55, 63, weight_32)
         return self.antennas
 
-    # 将权重赋给对应图的矩阵(并转为array类型)
+    # 将权重赋给对应图的矩阵(保留为array类型)
     def addweight_matrix(self, index_1, index_2, weight):  # index对应了实例化图列表中需要加权重的实例图索引
         self.antennas[index_1].matrix = np.array(self.antennas[index_1].matrix)
         self.antennas[index_2].matrix = np.array(self.antennas[index_2].matrix)
         self.antennas[index_1].matrix += weight
         self.antennas[index_2].matrix += weight
+        # 若需要list版本请去除以下代码的注释
+        # self.antennas[index_1].matrix = list(self.antennas[index_1].matrix)
+        # self.antennas[index_2].matrix = list(self.antennas[index_2].matrix)
+        # for i in range(len(self.antennas[index_1].matrix)):
+        #     self.antennas[index_1].matrix[i] = list(self.antennas[index_1].matrix[i])
+        #     self.antennas[index_2].matrix[i] = list(self.antennas[index_2].matrix[i])
 
     def create_matrixplus(self):  # 识别不同大小的图，逐个添加对应外权重最后返回
         if self.size == ('8', '8'):
